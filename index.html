@@ -1,27 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="layout.css" />
+    <link rel="stylesheet" href="bootstrap.min.css"/>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
   </head>
   <body>
-    <script>
-
-      $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
-
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
-        }
-
-      });
-
-    </script>
+  	<div class='navigation'>
+  		<ul>
+  			
+	  		<li><img width='40px' src='https://g.twimg.com/Twitter_logo_blue.png'></img></li> 
+	  		<li class='tweet-box pull-right'><input type="text" placeholder='New tweet...'/><button class='btn'>tweet</button></li>			    	
+	    	</ul>
+	</div>
+  	
+    <div class='tweets'>
+    		<div class='refresh'>load more</div>
+    		<div class='container'></div>
+    </div>   
+    <script src="index.js"></script>
   </body>
 </html>
