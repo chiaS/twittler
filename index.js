@@ -6,28 +6,52 @@ var topTweetIndex;
 var visitor = 'me';
 var main = function(){
 	streams.users.me=[]; //add one more user 'me'
+	
 	//initialize tweets
 	var $tweets = $('.tweets .container');
 	initTweets($tweets);
+	
 	//button to load more tweets
 	$('.refresh').click(fetchNewTweets);
+	
+	//showUserTimeline when click 'me' on the navigation
 	$('.menu > li:first').on('click', 'div', showUserTimeline);
+	
+	/*show user timeline when click on user's name
+	$('.tweet-user').on('click', function) only attaches handler to current page elements
+	register to document for later appended element*/
+	$(document).on('click', '.tweet-user', showUserTimeline); 
+	
+	//hide showUserTimeline
 	$('.appendedContainer').click(function(){
 		$(this).addClass('hide');		
 	});
-	//show user timeline when click on user's name
-	//$('.tweet-user').on('click', function) only attaches handler to current page elements
-	//register to document for later appended element
-	$(document).on('click', '.tweet-user', showUserTimeline); 
+	
+	//send user tweets when click tweet-btn or enter key
 	$('.tweet-box').on('click','.tweet-btn', sendMyTweet);
 	$('.tweet-box').on('keypress', 'input', function(event){
 		if(event.which === 13)
 			sendMyTweet();
 	});
+	
+	//toggle submenu when hovering settings icon
 	$('.menu').find('li').hover( function(){
 		$(this).find('.submenu').toggleClass('hide');
 	});
 	
+	/*configure shortcut keys*/
+	$(document).on('keypress', function(event){
+		//show tweet box
+		if(event.which === 116||event.which === 84){
+			$('.footer').toggleClass('show-footer');
+			$('.footer .hint').addClass('hide');
+		}
+		//load more tweets
+		if(event.which === 108||event.which === 76){
+			fetchNewTweets();
+			$('.tweets .hint').addClass('hide');
+		}
+	});
 }
 $(document).ready(main);
 /*This is called when user's name is clicked.*/

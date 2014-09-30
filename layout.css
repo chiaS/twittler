@@ -4,6 +4,9 @@ html,body{
 	margin:0;
 	background-color:#f5f5f5;
 	font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 input[type='text']{
 	border: 1px solid #dce0e0;
@@ -22,7 +25,7 @@ ul {
 li {
     display: inline-block;
 }
-a:hover{text-decoration:none;}
+
 
 .btn{
 	background-color:#55acee;
@@ -41,7 +44,6 @@ a:hover{text-decoration:none;}
 	margin:0.4em 0;
 }
 .navigation .menu{
-	width:80%;
 	text-align:right;
 }
 .navigation .menu > li{
@@ -55,9 +57,9 @@ a:hover{text-decoration:none;}
 
 .navigation .menu a{text-decoration:none;}
 .navigation .submenu{
-	position:absolute;
-	top:170%;
-	left:-36px;
+	position:absolute;	
+	top:38px; /*height of navigation*/
+	left:-38px;
 	padding-top:10px;
 	width:120px;
 	box-shadow:0 1px 0px 0 rgba(0, 0, 0, 0.22);
@@ -72,12 +74,11 @@ a:hover{text-decoration:none;}
 	position:absolute;
 	
 	bottom:100%;
-	margin-bottom:-10px;
-	border-color:transparent;
-	border-width:16px;
-	margin-left:-16px;
+	margin-bottom:-10px;/*padding top of submenu*/
+	border-width:13px;
+	margin-left:-13px;
 	left: 50%;
-	border-bottom-color:#fff;
+	border-bottom-color:#fff;/*submenu list color*/
 	
 }
 .navigation .submenu > li{
@@ -88,13 +89,17 @@ a:hover{text-decoration:none;}
 .navigation .submenu > li > a{
 	padding:5px 15px;	
 	display:block;
-	color:#565a5c;
-	font-size:0.8em;
+	color:#55acee;
+	font-size:0.9em;
 }
 .navigation .submenu > li > a:hover{
-	background-color:#e5e5e5;
-
+	background-color:#55acee;
+	color:#fff;
 }
+.navigation .submenu > li > a:before{
+	float:right;
+}
+
 .tweets{
 	background-color:#f5f5f5;
 	position:relative;
@@ -105,10 +110,14 @@ a:hover{text-decoration:none;}
 .tweets .refresh{
 	color:#55acee;
 	cursor:pointer;
-	margin:0 auto;
-	width:75px;
+	margin-left:46%;
 }
+.tweets .hint{
+	position: absolute;
+	left: 46%;
+	top: -15px;
 
+}
 .tweets .tweet{
 	background-color:#fff;
 	border-radius:5px;
@@ -174,13 +183,19 @@ a:hover{text-decoration:none;}
 	font: bold 1.1em sans-serif;
 	color: #55acee;
 }
-/*footer: top link and tweet box*/
+/*footer: tweet box*/
 .footer{
 	position:fixed;
-	bottom:0;
+	bottom:-5em;
 	width:100%;
 	background-color:rgba(0,0,0,0.6);
 	padding:1em 0;
+	height:5em;
+	-webkit-transition: bottom 1s;
+	transition: bottom 1s;
+}
+.footer:hover, .show-footer{
+	bottom:0;
 }
 .footer .tweet-box{
 	border-top-left-radius:0;
@@ -188,33 +203,61 @@ a:hover{text-decoration:none;}
 	text-align:right;
 	width:80%;
 }
+
 .footer .tweet-box input{
-	width:130px;	
+	width:75%;	
 	height:40px;
 	font-size:1.3em;
-	-webkit-transition: width 1s;
-	transition: width 1s;
 }
-.footer .tweet-box input:focus{
-	width:75%;
-}
+
 .footer .tweet-box .tweet-btn{
 	border-radius:2px;
 	padding:5px 10px;
 	height:40px;
 }
-.footer .top-btn{
+.footer .footer-switch{
+	position:absolute;
+	bottom:100%;
+	
+}
+.footer .footer-switch button{
+	border:0;
+	color:#fff;
+	background-color:rgba(0,0,0,0.6);
+}
+.hint{
+	width:150px;
+	color:orange;
+	border:2px solid orange;
+	font-weight:bold;
+	text-align:center;
+	padding:3px;
+	z-index:2;
+}
+.footer-switch .hint{
+	position:absolute;
+	top:-130%;
+}
+.top-btn{
+	position:fixed;
+	bottom:10%;
+	right:10%;
 	border-radius:50%;
 	width:4rem;
 	height:4rem;
+	background-color:#55acee;
+	text-align:center;
+	color:#fff;
+	padding-top:5px;
 	display:block;
+	z-index:2;
 }
-.footer .top-btn span{
+.top-btn span{
 	position: relative;
 	top: -3px;
 	font-size:1.4em;
 }
-
+.top-btn:hover{text-decoration:none;}
 .hide{
 	visibility:hidden;
 	opacity:0;
